@@ -26,6 +26,13 @@ def send_message(clients_sock, sock_addres):
             clients.append((clients_sock, sock_addres))
 
 
+        # проверка на то, какой это клиент и вывод на консоль контроля, от кого пришло сообщение
+        if len(clients) > 1 and sock_addres == clients[0][1]: # клиент1
+            print(f'[Клиент 1] -{message}')
+        elif len(clients) > 1 and sock_addres == clients[1][1]: # клиент2:
+            print(f'[Клиент 2] -{message}')
+
+
         # отправка сообщения от клиента2 для клиента1
         if len(clients) > 1 and sock_addres == clients[0][1]:
             client1_sock, _ = clients[0] # распаковка кортежа с данными для первого клиента
