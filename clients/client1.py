@@ -19,7 +19,7 @@ PORT = 12345
 
 client1_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client1_sock.connect((HOST, PORT))
-print(f'Присоеденился к серверу - {HOST}')
+print(f'Присоеденился к серверу - [{HOST}]')
 
 
 flag = True
@@ -29,4 +29,4 @@ while flag:
 
     if message != '':       #если сообщение не равно пустому символу
         client1_sock.sendall((f'[{message}]').encode('utf-8'))
-        print((f'''Сообщение "{message}" было отправлено на сервер.'''))
+        client1_sock.sendall((message.encode('utf-8')))

@@ -25,13 +25,14 @@ def send_message(clients_sock, sock_addres):
         if sock_addres not in [i[1] for i in clients]:
             clients.append((clients_sock, sock_addres))
 
+
         # отправка сообщения от клиента2 для клиента1
-        if sock_addres == clients[0][1] and len(clients) > 1:
+        if len(clients) > 1 and sock_addres == clients[0][1]:
             client1_sock, _ = clients[0] # распаковка кортежа с данными для первого клиента
             client1_sock.send(message.encode('utf8'))
 
         # отправка сообщения от клиента1 для клиента2
-        if sock_addres == clients[1][1] and len(clients) > 1:
+        if len(clients) > 1 and sock_addres == clients[1][1]:
             client2_sock, _ = clients[1] # распаковка кортежа с данными для второго клиента
             client2_sock.send(message.encode('utf8'))
 

@@ -29,5 +29,4 @@ while flag:
     message = input('Введите сообщение')       #вводим сообщение
 
     if message != '':       #если сообщение не равно пустому символу
-        client2_sock.sendall((f'[{message}]').encode('utf-8'))
-        print((f'''Сообщение "{message}" было отправлено на сервер.'''))
+        client2_sock.sendall((message.encode('utf-8')))
