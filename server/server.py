@@ -30,7 +30,10 @@ def send_message(clients_sock, sock_addres):
             client1_sock, _ = clients[0] # распаковка кортежа с данными для первого клиента
             client1_sock.send(message.encode('utf8'))
 
-
+        # отправка сообщения от клиента1 для клиента2
+        if sock_addres == clients[1][1] and len(clients) > 1:
+            client2_sock, _ = clients[1] # распаковка кортежа с данными для второго клиента
+            client2_sock.send(message.encode('utf8'))
 
 # функция запуска сервера
 def start_server():
