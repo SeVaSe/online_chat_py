@@ -12,3 +12,20 @@
 HOST = 'localhost'
 PORT = 12345'''
 
+import socket
+
+HOST = 'localhost'
+PORT = 12345
+
+client1_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client1_sock.connect((HOST, PORT))
+
+name = input('Введите имя: ')    #вводим имя
+
+flag = True
+
+while flag:
+    message = input()       #вводим сообщение
+
+    if message != '':       #если сообщение не равно пустому символу
+        client1_sock.sendall((f'[{name}]: {message}').encode('utf-8'))
