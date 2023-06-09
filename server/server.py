@@ -9,5 +9,17 @@ HOST = 'localhost'
 PORT = 12345 '''
 
 
+import socket
+import threading
+import os
+
+# привязка к сокету , нашего хоста и порта
+HOST, PORT = 'localhost', 12345
+server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_sock.bind((HOST, PORT))
+
+
+
+
 
 
