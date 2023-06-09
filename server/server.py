@@ -14,11 +14,18 @@ import threading
 import os
 
 
+clients = []
+
 # функция для принятия сообщений от клиентов и дальнейшая их переотправка
 def send_message(clients_sock, sock_addres):
     while True:
         message = clients_sock.recv(1024).decode('utf-8')
-        print(message)
+
+        # проверяем, есть ли совпадение адрессов в клиентах. Если нет, то мы добавляем нового клиента в список
+        if sock_addres not in [i[1] for i in clients]:
+            clients.append((clients_sock, sock_addres))
+
+
 
 # функция запуска сервера
 def start_server():
