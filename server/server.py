@@ -14,11 +14,13 @@ import threading
 import os
 
 
+# функция для принятия сообщений от клиентов и дальнейшая их переотправка
 def send_message(clients_sock, sock_addres):
     while True:
         message = clients_sock.recv(1024).decode('utf-8')
         print(message)
 
+# функция запуска сервера
 def start_server():
     # привязка к сокету , нашего хоста и порта
     HOST, PORT = 'localhost', 12345
