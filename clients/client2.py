@@ -20,12 +20,14 @@ PORT = 12345
 
 client2_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client2_sock.connect((HOST, PORT))
+print(f'Присоеденился к серверу - {HOST}')
 
 
 flag = True
 
 while flag:
-    message = input()       #вводим сообщение
+    message = input('Введите сообщение')       #вводим сообщение
 
     if message != '':       #если сообщение не равно пустому символу
         client2_sock.sendall((f'[{message}]').encode('utf-8'))
+        print(f'Сообщение было отправлено на сервер. Сообщение: [{message}]\n')
