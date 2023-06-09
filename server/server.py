@@ -14,10 +14,8 @@ import threading
 import os
 
 
-
-
-
-
+def send_message(clients_sock, sock_addres):
+    pass
 
 def start_server():
     # привязка к сокету , нашего хоста и порта
@@ -29,6 +27,16 @@ def start_server():
     server_sock.listen(5) # до 5 клиентов
     print('Сервер запущен и ждет подключений...')
 
+    # подключение клиентов
+    while True:
+        clients_sock, sock_addres = server_sock.accept()
+        print(f'Подключен клиент с адрессом - {sock_addres}')
+        client_thread = threading.Thread(target=send_message, args=(clients_sock, sock_addres)) # поток отправлений инфы клиентов в функцию
+        client_thread.start()
+
+        server_sock.close()
+
+start_server()
 
 
 
