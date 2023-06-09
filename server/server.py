@@ -15,7 +15,9 @@ import os
 
 
 def send_message(clients_sock, sock_addres):
-    pass
+    while True:
+        message = clients_sock.recv(1024).decode('utf-8')
+        print(message)
 
 def start_server():
     # привязка к сокету , нашего хоста и порта
@@ -33,8 +35,6 @@ def start_server():
         print(f'Подключен клиент с адрессом - {sock_addres}')
         client_thread = threading.Thread(target=send_message, args=(clients_sock, sock_addres)) # поток отправлений инфы клиентов в функцию
         client_thread.start()
-
-        server_sock.close()
 
 start_server()
 
