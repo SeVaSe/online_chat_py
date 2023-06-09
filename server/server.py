@@ -13,11 +13,21 @@ import socket
 import threading
 import os
 
-# привязка к сокету , нашего хоста и порта
-HOST, PORT = 'localhost', 12345
-server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_sock.bind((HOST, PORT))
 
+
+
+
+
+
+def start_server():
+    # привязка к сокету , нашего хоста и порта
+    HOST, PORT = 'localhost', 12345
+    server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_sock.bind((HOST, PORT))
+
+    # прослушка подключений
+    server_sock.listen(5) # до 5 клиентов
+    print('Сервер запущен и ждет подключений...')
 
 
 
