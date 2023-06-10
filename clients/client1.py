@@ -22,11 +22,15 @@ client1_sock.connect((HOST, PORT))
 print(f'Присоеденился к серверу - [{HOST}]')
 
 
+
+
 flag = True
 
 while flag:
-    message = input('Введите сообщение:')       #вводим сообщение
+    message = input('Введите сообщение: ')       #вводим сообщение
 
     if message != '':       #если сообщение не равно пустому символу
-        client1_sock.sendall((f'[{message}]').encode('utf-8'))
-        client1_sock.sendall((message.encode('utf-8')))
+        client1_sock.sendall(message.encode('utf-8'))
+
+    mes = client1_sock.recv(1024).decode('utf-8')
+    print(f'Клиент2 - {mes}\n')

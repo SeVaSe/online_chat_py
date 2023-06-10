@@ -25,23 +25,17 @@ def send_message(clients_sock, sock_addres):
         if sock_addres not in [i[1] for i in clients]:
             clients.append((clients_sock, sock_addres))
 
-
         # проверка на то, какой это клиент и вывод на консоль контроля, от кого пришло сообщение
         if len(clients) > 1 and sock_addres == clients[0][1]: # клиент1
             print(f'[Клиент 1] -{message}')
-        elif len(clients) > 1 and sock_addres == clients[1][1]: # клиент2:
+        if len(clients) > 1 and sock_addres == clients[1][1]: # клиент2:
             print(f'[Клиент 2] -{message}')
 
+        # отправка сообщения клиентам
+        for client_conn, client_addr in clients:
+            if client_addr != sock_addres:
+                client_conn.sendall(message.encode('utf-8'))
 
-        # отправка сообщения от клиента2 для клиента1
-        if len(clients) > 1 and sock_addres == clients[0][1]:
-            client1_sock, _ = clients[0] # распаковка кортежа с данными для первого клиента
-            client1_sock.send(message.encode('utf8'))
-
-        # отправка сообщения от клиента1 для клиента2
-        if len(clients) > 1 and sock_addres == clients[1][1]:
-            client2_sock, _ = clients[1] # распаковка кортежа с данными для второго клиента
-            client2_sock.send(message.encode('utf8'))
 
 # функция запуска сервера
 def start_server():
@@ -58,6 +52,7 @@ def start_server():
     while True:
         clients_sock, sock_addres = server_sock.accept()
         print(f'Подключен клиент с адрессом - {sock_addres}')
+
         client_thread = threading.Thread(target=send_message, args=(clients_sock, sock_addres)) # поток отправлений инфы клиентов в функцию
         client_thread.start()
 
