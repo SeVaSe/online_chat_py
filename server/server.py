@@ -21,9 +21,9 @@ def send_message(clients_sock, sock_addres):
     while True:
         message = clients_sock.recv(1024).decode('utf-8')
 
-        # проверяем, есть ли совпадение адрессов в клиентах. Если нет, то мы добавляем нового клиента в список
-        if sock_addres not in [i[1] for i in clients]:
-            clients.append((clients_sock, sock_addres))
+        # # проверяем, есть ли совпадение адрессов в клиентах. Если нет, то мы добавляем нового клиента в список
+        # if sock_addres not in [i[1] for i in clients]:
+        #     clients.append((clients_sock, sock_addres))
 
         # проверка на то, какой это клиент и вывод на консоль контроля, от кого пришло сообщение
         if len(clients) > 1 and sock_addres == clients[0][1]: # клиент1
@@ -48,13 +48,20 @@ def start_server():
     server_sock.listen(5) # до 5 клиентов
     print('Сервер запущен и ждет подключений...')
 
+
     # подключение клиентов
     while True:
         clients_sock, sock_addres = server_sock.accept()
         print(f'Подключен клиент с адрессом - {sock_addres}')
 
+        new_client = True
+
         client_thread = threading.Thread(target=send_message, args=(clients_sock, sock_addres)) # поток отправлений инфы клиентов в функцию
         client_thread.start()
+
+        if new_client:
+            clients.append((clients_sock, sock_addres))
+            new_client = False
 
 start_server()
 
