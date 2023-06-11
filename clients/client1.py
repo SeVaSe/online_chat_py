@@ -12,7 +12,18 @@
 HOST = 'localhost'
 PORT = 12345'''
 
+
 import socket
+from tkinter import *
+
+
+# окно
+window = Tk()
+window.title('Онлайн чат. Клиент1')
+window.geometry('400x600')
+
+
+
 
 HOST = 'localhost'
 PORT = 12345
