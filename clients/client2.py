@@ -14,6 +14,7 @@ PORT = 12345'''
 
 import socket
 from tkinter import *
+from tkinter import scrolledtext
 
 HOST = 'localhost'
 PORT = 12345
@@ -40,7 +41,9 @@ window.title('Онлайн чат. Клиент 2')
 window.geometry('400x600')
 
 # ввод текста
-text = Entry(window)
-text.pack()
+text_input = Entry(window)
+text_input.pack()
 
-
+# отображение текста
+text_display = scrolledtext.ScrolledText(window)
+text_display.pack()
