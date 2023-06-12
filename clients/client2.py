@@ -39,3 +39,8 @@ window = Tk()
 window.title('Онлайн чат. Клиент 2')
 window.geometry('400x600')
 
+# ввод текста
+text = Entry(window)
+text.pack()
+
+
