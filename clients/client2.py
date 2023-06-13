@@ -23,17 +23,6 @@ client2_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client2_sock.connect((HOST, PORT))
 print(f'Присоеденился к серверу - [{HOST}]')
 
-flag = True
-
-while flag:
-    message = input('Введите сообщение: ')  # вводим сообщение
-
-    if message != '':  # если сообщение не равно пустому символу
-        client2_sock.sendall(message.encode('utf-8'))
-
-    mes = client2_sock.recv(1024).decode('utf-8')
-    print(f'Клиент1 - {mes}\n')
-
 # tkinter часть
 # окно
 window = Tk()
@@ -47,3 +36,17 @@ text_input.pack()
 # отображение текста
 text_display = scrolledtext.ScrolledText(window)
 text_display.pack()
+
+# кнопка "отправить"
+
+
+flag = True
+
+while flag:
+    message = input('Введите сообщение: ')  # вводим сообщение
+
+    if message != '':  # если сообщение не равно пустому символу
+        client2_sock.sendall(message.encode('utf-8'))
+
+    mes = client2_sock.recv(1024).decode('utf-8')
+    print(f'Клиент1 - {mes}\n')
