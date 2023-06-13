@@ -37,16 +37,13 @@ text_input.pack()
 text_display = scrolledtext.ScrolledText(window)
 text_display.pack()
 
+# функция отправки сообщения
+def message_send_clicked():
+    message_send = text_input.get()
+
+    if message_send != '':
+        client2_sock.sendall(message_send.encode('utf-8'))
+
 # кнопка "отправить"
-
-
-flag = True
-
-while flag:
-    message = input('Введите сообщение: ')  # вводим сообщение
-
-    if message != '':  # если сообщение не равно пустому символу
-        client2_sock.sendall(message.encode('utf-8'))
-
-    mes = client2_sock.recv(1024).decode('utf-8')
-    print(f'Клиент1 - {mes}\n')
+btn = Button(window, text='Отправить', command=message_send_clicked)
+btn.pack()
