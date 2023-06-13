@@ -37,13 +37,32 @@ text_input.pack()
 text_display = scrolledtext.ScrolledText(window)
 text_display.pack()
 
-# функция отправки сообщения
+
+# функция отправки сообщений
 def message_send_clicked():
     message_send = text_input.get()
 
     if message_send != '':
         client2_sock.sendall(message_send.encode('utf-8'))
 
+
 # кнопка "отправить"
 btn = Button(window, text='Отправить', command=message_send_clicked)
 btn.pack()
+
+
+# функция получения сообщений
+def message_receiving():
+    while True:
+        # обновление интерфейса
+        window.update()
+
+        # получение и вывод сообщений
+        try:
+            msg_rcv = client2_sock.recv(1024).decode('utf-8')
+
+            if msg_rcv:
+                text_display.insert(END, f'{msg_rcv}\n')
+        except socket.error as e:
+            print(f'Ошибка: {e}')
+            break
