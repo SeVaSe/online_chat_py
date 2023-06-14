@@ -64,7 +64,7 @@ def message_receiving():
             msg_rcv = client2_sock.recv(1024).decode('utf-8')
 
             if msg_rcv:
-                text_display.insert(END, f'{msg_rcv}\n')
+                text_display.insert(END, f'Клиент1: {msg_rcv}\n')
         except socket.error as e:
             print(f'Ошибка: {e}')
             break

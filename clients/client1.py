@@ -49,6 +49,7 @@ def send_message_click():
     message = input_text.get()
     message_display.insert(END, f'Клиент1: {message}\n')
 
+
     if message != '':       #если сообщение не равно пустому символу
         client1_sock.sendall(message.encode('utf-8'))
 
