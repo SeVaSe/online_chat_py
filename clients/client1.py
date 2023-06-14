@@ -48,10 +48,12 @@ input_text.pack()
 def send_message_click():
     message = input_text.get()
     message_display.insert(END, f'Клиент1: {message}\n')
+    input_text.delete(0, END)
 
 
     if message != '':       #если сообщение не равно пустому символу
         client1_sock.sendall(message.encode('utf-8'))
+
 
 # кнопка "отправить"
 btn = Button(window, text='Отправить', command=send_message_click)
