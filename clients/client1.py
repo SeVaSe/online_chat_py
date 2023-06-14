@@ -47,6 +47,7 @@ input_text.pack()
 # функция отправки соо
 def send_message_click():
     message = input_text.get()
+    message_display.insert(END, f'Клиент1: {message}\n')
 
     if message != '':       #если сообщение не равно пустому символу
         client1_sock.sendall(message.encode('utf-8'))
@@ -68,7 +69,7 @@ def out_message():
             mes = client1_sock.recv(1024).decode('utf-8')
 
             if mes:
-                message_display.insert(END, f'{mes}\n')
+                message_display.insert(END, f'Клиент2: {mes}\n')
         except socket.error as e:
             print(f'Ошибка: {e}')
             break
