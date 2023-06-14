@@ -42,6 +42,7 @@ text_input.pack()
 # функция отправки сообщений
 def message_send_clicked():
     message_send = text_input.get()
+    text_display.insert(END, f'Клиент2: {message_send}\n')
 
     if message_send != '':
         client2_sock.sendall(message_send.encode('utf-8'))
