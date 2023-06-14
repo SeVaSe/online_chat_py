@@ -15,6 +15,7 @@ PORT = 12345'''
 import socket
 from tkinter import *
 from tkinter import scrolledtext
+import threading
 
 HOST = 'localhost'
 PORT = 12345
@@ -66,3 +67,10 @@ def message_receiving():
         except socket.error as e:
             print(f'Ошибка: {e}')
             break
+
+msg_theard = threading.Thread(target=message_receiving)
+
+msg_theard.daemon = True
+msg_theard.start()
+
+window.mainloop()
