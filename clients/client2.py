@@ -30,13 +30,13 @@ window = Tk()
 window.title('Онлайн чат. Клиент 2')
 window.geometry('400x600')
 
-# ввод текста
-text_input = Entry(window)
-text_input.pack()
-
 # отображение текста
 text_display = scrolledtext.ScrolledText(window)
 text_display.pack()
+
+# ввод текста
+text_input = Entry(window)
+text_input.pack()
 
 
 # функция отправки сообщений
