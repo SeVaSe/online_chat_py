@@ -25,6 +25,18 @@ client2_sock.connect((HOST, PORT))
 print(f'Присоеденился к серверу - [{HOST}]')
 
 # tkinter часть
+# окно для имени
+window_name = Tk()
+window_name.title('Как Вас зовут?')
+
+lbl = Label(window_name, text='Введите имя:')
+lbl.pack()
+
+name_input = Entry(window_name)
+name_input.pack()
+
+
+
 # окно
 window = Tk()
 window.title('Онлайн чат. Клиент 2')
@@ -42,11 +54,12 @@ text_input.pack()
 # функция отправки сообщений
 def message_send_clicked():
     message_send = text_input.get()
-    text_display.insert(END, f'Клиент2: {message_send}\n')
+    name = name_input.get()
+    text_display.insert(END, f'{name}: {message_send}\n')
     text_input.delete(0, END)       #стирание текста с текстового поля после отправки сообщения
 
     if message_send != '':
-        client2_sock.sendall(message_send.encode('utf-8'))
+        client2_sock.sendall((f'{name}: {message_send}').encode('utf-8'))
 
 
 # кнопка "отправить"
@@ -65,7 +78,7 @@ def message_receiving():
             msg_rcv = client2_sock.recv(1024).decode('utf-8')
 
             if msg_rcv:
-                text_display.insert(END, f'Клиент1: {msg_rcv}\n')
+                text_display.insert(END, f'{msg_rcv}\n')
         except socket.error as e:
             print(f'Ошибка: {e}')
             break
