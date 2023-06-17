@@ -40,7 +40,7 @@ def send_message(clients_sock, sock_addres):
 # функция запуска сервера
 def start_server():
     # привязка к сокету , нашего хоста и порта
-    HOST, PORT = 'localhost', 12346
+    HOST, PORT = 'localhost', 12347
     server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_sock.bind((HOST, PORT))
 

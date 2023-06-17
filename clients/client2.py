@@ -18,7 +18,7 @@ from tkinter import scrolledtext
 import threading
 
 HOST = 'localhost'
-PORT = 12346
+PORT = 12347
 
 client2_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client2_sock.connect((HOST, PORT))
@@ -37,11 +37,11 @@ name_input.pack()
 
 def name_input_clicked():
     name = name_input.get()
+    window_name.destroy()
 
 btn_name = Button(window_name, text='Отправить', command=name_input_clicked)
+btn_name.pack()
 
-
-window_name.mainloop()
 
 # окно
 window = Tk()
@@ -60,6 +60,7 @@ text_input.pack()
 # функция отправки сообщений
 def message_send_clicked():
     message_send = text_input.get()
+    name = name_input.get()
     text_display.insert(END, f'{name}: {message_send}\n')
     text_input.delete(0, END)       #стирание текста с текстового поля после отправки сообщения
 
