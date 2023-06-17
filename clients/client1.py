@@ -22,7 +22,7 @@ import threading
 
 # хост и порт
 HOST = 'localhost'
-PORT = 12347
+PORT = 12348
 
 # установление данных сокету
 client1_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
