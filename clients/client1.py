@@ -48,8 +48,8 @@ def open_chat_window(name_client):
 
     # функция отправки соо
     def send_message_click():
-        message = f'{input_text.get()}' # сохранение в переменную, наше соо
-        message_display.insert(END, f'{name_client}: {message}\n') # вывод на собственном окне
+        message = f'{name_client}: {input_text.get()}' # сохранение в переменную, наше соо
+        message_display.insert(END, f'{message}\n') # вывод на собственном окне
         input_text.delete(0, END)
 
 
