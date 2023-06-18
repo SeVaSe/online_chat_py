@@ -78,6 +78,7 @@ def open_chat_window(name):
 # окно для имени
 window_name = Tk()
 window_name.title('Как Вас зовут?')
+window_name.geometry('300x200')
 
 lbl = Label(window_name, text='Введите имя:')
 lbl.pack()
