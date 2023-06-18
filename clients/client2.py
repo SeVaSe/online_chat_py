@@ -43,7 +43,7 @@ def open_chat_window(name):
     # функция отправки сообщений
     def message_send_clicked():
         message_send = f'{name}: {text_input.get()}'
-        text_display.insert(END, f'{message_send}\n')
+        text_display.insert(END, f'Я: {text_input.get()}\n')
         text_input.delete(0, END)  # стирание текста с текстового поля после отправки сообщения
 
         if message_send != '':
